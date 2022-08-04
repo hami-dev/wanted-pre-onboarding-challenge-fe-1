@@ -2,6 +2,8 @@ import React, {useEffect, useMemo} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 
+import {Users} from 'api/User';
+
 import Container from 'components/common/Container';
 import Input from 'components/common/Input';
 import Button from 'components/common/Button';
@@ -22,8 +24,9 @@ const Signin = () => {
     formState: {errors, isValid},
   } = useForm({reValidateMode: 'onChange', mode: 'onChange', defaultValues});
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     // api 연결
+    const res = await Users.checkLogin(data);
   };
 
   const onClickSignUp = () => {

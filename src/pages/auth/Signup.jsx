@@ -2,6 +2,9 @@ import React, {useEffect, useMemo} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 
+import {Users} from 'api/User';
+import {Utils} from 'utils';
+
 import Container from 'components/common/Container';
 import Input from 'components/common/Input';
 import Button from 'components/common/Button';
@@ -22,8 +25,13 @@ const Signup = () => {
     formState: {errors, isValid},
   } = useForm({reValidateMode: 'onChange', mode: 'onChange', defaultValues});
 
-  const onSubmit = (data) => {
-    // api 연결
+  const onSubmit = async (data) => {
+    try {
+      const res = await Users.createUser(data);
+      Utils.saveLocalStorage('token', res.data.token);
+    } catch (error) {
+      window.alert('회원가입 오류 발생');
+    }
   };
 
   const onClickCancel = () => {
