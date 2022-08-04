@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
 const Button = ({children, type, disabled, className, onClick, style}) => {
   return (
@@ -47,6 +47,11 @@ const Wrapper = styled.button`
 
   &.grayText {
     color: ${({theme}) => theme.gray};
+  }
+
+  &:disabled {
+    color: ${({theme}) => theme.gray};
+    background-color: ${({theme}) => theme.lightgray};
   }
 
   ${({customStyle}) => customStyle}
