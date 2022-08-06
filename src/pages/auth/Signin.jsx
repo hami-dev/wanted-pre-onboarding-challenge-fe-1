@@ -3,11 +3,13 @@ import {useNavigate} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 
 import {Users} from 'api/User';
+import {Utils} from 'utils';
 
 import Container from 'components/common/Container';
 import Input from 'components/common/Input';
 import Button from 'components/common/Button';
 import ButtonWrapper from 'components/common/ButtonWrapper';
+import ErrorText from 'components/common/ErrorText';
 
 const defaultValues = {
   email: '',
@@ -25,13 +27,25 @@ const Signin = () => {
   } = useForm({reValidateMode: 'onChange', mode: 'onChange', defaultValues});
 
   const onSubmit = async (data) => {
-    // api 연결
-    const res = await Users.checkLogin(data);
+    try {
+      const res = await Users.checkLogin(data);
+      Utils.saveLocalStorage('token', res.data.token);
+      navigate(`/`);
+    } catch (error) {
+      window.alert('로그인 오류 발생');
+    }
   };
 
   const onClickSignUp = () => {
     navigate('/auth/signup');
   };
+
+  useEffect(() => {
+    if (Utils.isTokenExist()) {
+      window.alert('이미 로그인 되어있습니다. 메인화면으로 이동합니다.');
+      navigate('/');
+    }
+  }, []);
 
   return (
     <div>
@@ -51,7 +65,7 @@ const Signin = () => {
               },
             })}
           />
-          <div>{errors?.email?.message}</div>
+          <ErrorText>{errors?.email?.message}</ErrorText>
           <Input
             type="password"
             placeholder="password"
@@ -66,7 +80,7 @@ const Signin = () => {
               },
             })}
           />
-          <div>{errors?.password?.message}</div>
+          <ErrorText>{errors?.password?.message}</ErrorText>
           <ButtonWrapper direction="column">
             <>
               {useMemo(

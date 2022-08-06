@@ -40,6 +40,13 @@ const Signup = () => {
     navigate(-1);
   };
 
+  useEffect(() => {
+    if (Utils.isTokenExist()) {
+      window.alert('이미 가입 되어있습니다. 메인화면으로 이동합니다.');
+      navigate('/');
+    }
+  }, []);
+
   return (
     <div>
       <Container title="회원가입">
