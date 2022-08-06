@@ -49,7 +49,7 @@ const Signin = () => {
 
   return (
     <div>
-      <Container title="로그인">
+      <Container title="로그인" width="500">
         <form onSubmit={handleSubmit(onSubmit)}>
           <Input
             type="text"

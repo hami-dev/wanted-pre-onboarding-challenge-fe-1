@@ -49,7 +49,7 @@ const Signup = () => {
 
   return (
     <div>
-      <Container title="회원가입">
+      <Container title="회원가입" width="500">
         <form onSubmit={handleSubmit(onSubmit)}>
           <Input
             type="text"
