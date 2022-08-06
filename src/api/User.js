@@ -5,6 +5,6 @@ const api = axios.create({
 });
 
 export const Users = {
-  checkLogin: (params) => api.get(`/users/login`, {params}),
+  checkLogin: (Parameter) => api.post(`/users/login`, Parameter),
   createUser: (Parameter) => api.post(`/users/create`, Parameter),
 };
