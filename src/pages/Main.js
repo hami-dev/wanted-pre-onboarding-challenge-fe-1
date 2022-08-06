@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Todos from 'pages/todo/Todos';
+
 const Main = () => {
-  return <div>hello Main</div>;
+  return <Todos />;
 };
 
 export default Main;
