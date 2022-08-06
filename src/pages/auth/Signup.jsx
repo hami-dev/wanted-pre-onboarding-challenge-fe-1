@@ -9,6 +9,7 @@ import Container from 'components/common/Container';
 import Input from 'components/common/Input';
 import Button from 'components/common/Button';
 import ButtonWrapper from 'components/common/ButtonWrapper';
+import ErrorText from 'components/common/ErrorText';
 
 const defaultValues = {
   email: '',
@@ -29,6 +30,7 @@ const Signup = () => {
     try {
       const res = await Users.createUser(data);
       Utils.saveLocalStorage('token', res.data.token);
+      navigate(`/`);
     } catch (error) {
       window.alert('회원가입 오류 발생');
     }
@@ -56,7 +58,7 @@ const Signup = () => {
               },
             })}
           />
-          <div>{errors?.email?.message}</div>
+          <ErrorText>{errors?.email?.message}</ErrorText>
           <Input
             type="password"
             placeholder="password"
@@ -71,7 +73,7 @@ const Signup = () => {
               },
             })}
           />
-          <div>{errors?.password?.message}</div>
+          <ErrorText>{errors?.password?.message}</ErrorText>
           <ButtonWrapper>
             <>
               {useMemo(
