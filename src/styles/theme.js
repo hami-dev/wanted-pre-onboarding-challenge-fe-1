@@ -4,6 +4,7 @@ const defaultTheme = {
   black: '#00072E',
   white: '#ffffff',
   blue: '#0F71FA',
+  red: '#EF403A',
   lightblue: '#26ACFF',
   gray: '#737373',
   lightgray: '#d1d6de',
