@@ -4,10 +4,18 @@ export const Utils = {
   },
 
   getLocalStorage: (key) => {
-    window.localStorage.getItem(key);
+    return window.localStorage.getItem(key);
   },
 
   removeLocalStorage: (key) => {
     window.localStorage.removeItem(key);
+  },
+
+  isTokenExist: () => {
+    const token = Utils.getLocalStorage('token');
+    if (token) {
+      return true;
+    }
+    return false;
   },
 };
