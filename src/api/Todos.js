@@ -15,5 +15,6 @@ export const Todos = {
   createTodo: (Parameter) => api.post(`/todos`, Parameter),
   getTodo: () => api.get(`/todos`),
   getTodoById: (id) => api.get(`todos/${id}`),
-  updateTodo: (id, Parameter) => api.put(`todos/${id}`, Parameter),
+  updateTodo: ({id, Parameter}) => api.put(`todos/${id}`, Parameter),
+  deleteTodo: (id) => api.delete(`/todos/${id}`),
 };
