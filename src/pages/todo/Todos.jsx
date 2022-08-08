@@ -43,6 +43,6 @@ export {todoStore};
 const Section = styled.section`
   width: 720px;
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
+  grid-template-columns: 1fr 1fr;
   gap: 15px;
 `;
