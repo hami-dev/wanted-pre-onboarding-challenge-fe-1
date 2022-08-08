@@ -1,14 +1,23 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import styled from 'styled-components';
 
+import {useNavigate} from 'react-router-dom';
 import {useQuery} from '@tanstack/react-query';
 
 import {Todos} from 'api/Todos';
 
+import {todoStore} from 'pages/todo/Todos';
+
 import TodoItem from 'components/todos/TodoItem';
+import Button from 'components/common/Button';
 
 const TodoList = () => {
-  const {isLoading, isError, data} = useQuery(['todoList'], Todos.getTodo);
+  const navigate = useNavigate();
+  const {setCreateTodo, setEditTodo} = useContext(todoStore);
+
+  const {isLoading, data = []} = useQuery(['todos'], () => Todos.getTodo(), {
+    refetchOnWindowFocus: false,
+  });
 
   return (
     <Wrapper>
@@ -21,6 +30,18 @@ const TodoList = () => {
           ))}
         </>
       )}
+
+      <Button
+        type="button"
+        className="large blue"
+        onClick={() => {
+          setEditTodo(false);
+          setCreateTodo(true);
+          navigate('/');
+        }}
+      >
+        새 TODO 등록하기
+      </Button>
     </Wrapper>
   );
 };
@@ -28,5 +49,5 @@ const TodoList = () => {
 export default TodoList;
 
 const Wrapper = styled.div`
-  background-color: lightblue;
+  padding-bottom: 50px;
 `;
