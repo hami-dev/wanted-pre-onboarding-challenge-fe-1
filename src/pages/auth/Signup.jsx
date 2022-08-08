@@ -81,7 +81,7 @@ const Signup = () => {
             })}
           />
           <ErrorText>{errors?.password?.message}</ErrorText>
-          <ButtonWrapper>
+          <ButtonWrapper align="center">
             <>
               {useMemo(
                 () => (

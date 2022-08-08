@@ -81,7 +81,7 @@ const Signin = () => {
             })}
           />
           <ErrorText>{errors?.password?.message}</ErrorText>
-          <ButtonWrapper direction="column">
+          <ButtonWrapper direction="column" align="center">
             <>
               {useMemo(
                 () => (
