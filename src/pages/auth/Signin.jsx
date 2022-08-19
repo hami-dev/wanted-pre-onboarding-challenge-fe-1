@@ -9,7 +9,7 @@ import Container from 'components/common/Container';
 import Input from 'components/common/Input';
 import Button from 'components/common/Button';
 import ButtonWrapper from 'components/common/ButtonWrapper';
-import ErrorText from 'components/common/ErrorText';
+import Text from 'components/common/Text';
 
 const defaultValues = {
   email: '',
@@ -65,7 +65,7 @@ const Signin = () => {
               },
             })}
           />
-          <ErrorText>{errors?.email?.message}</ErrorText>
+          <Text type="error">{errors?.email?.message}</Text>
           <Input
             type="password"
             placeholder="password"
@@ -80,7 +80,7 @@ const Signin = () => {
               },
             })}
           />
-          <ErrorText>{errors?.password?.message}</ErrorText>
+          <Text type="error">{errors?.password?.message}</Text>
           <ButtonWrapper direction="column" align="center">
             <>
               {useMemo(
